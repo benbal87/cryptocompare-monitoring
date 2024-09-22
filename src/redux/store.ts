@@ -1,8 +1,11 @@
 import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit'
 import logger from 'redux-logger'
+import navigationReducer from './navigation/navigation.reducer.ts'
 
 const store = configureStore({
-  reducer: {},
+  reducer: {
+    navigation: navigationReducer
+  },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger)
 })
 
