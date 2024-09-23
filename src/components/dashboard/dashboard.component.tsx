@@ -5,9 +5,10 @@ import React, { useState } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { Outlet } from 'react-router-dom'
 import { createStructuredSelector } from 'reselect'
-import { updateApiKey } from '../../redux/api-key/api-key.reducer.ts'
+import { updateApiKeyThunk } from '../../redux/api-key/api-key.reducer.ts'
 import { selectApiKey } from '../../redux/api-key/api-key.selector.ts'
 import { useAppDispatch } from '../../redux/hooks.ts'
+import { showSnackbar } from '../../redux/snackbar/snackbar.reducer.ts'
 import { isStringNotEmpty, validateApiKey } from '../../utils/app.utils.ts'
 import PageTitle from '../page-title/page-title.component.tsx'
 import styles from './dashboard.module.scss'
@@ -24,15 +25,26 @@ const Dashboard: React.FC<DashboardPropsFromRedux> = ({ apiKey = '' }) => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-
     const apiKeyInput = inputValue.trim()
-    if (validateApiKey(apiKeyInput)) {
-      console.debug('Updating API Key:', apiKeyInput)
-      dispatch(updateApiKey(apiKeyInput))
+
+    if (!validateApiKey(apiKeyInput)) {
+      setError(true)
+      return
     }
 
-    setError(true)
-    return
+    console.debug('Updating API Key:', apiKeyInput)
+    dispatch(updateApiKeyThunk({ apiKey: apiKeyInput }))
+      .then(() => {
+        dispatch(
+          showSnackbar({
+            isOpen: true,
+            message: 'API Key successfully updated!',
+            position: { vertical: 'bottom', horizontal: 'center' },
+            severity: 'success',
+            autoHideDuration: 4000
+          })
+        )
+      })
   }
 
   return (
