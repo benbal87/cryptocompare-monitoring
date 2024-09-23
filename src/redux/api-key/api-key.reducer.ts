@@ -5,7 +5,7 @@ export interface ApiKeyStateType {
 }
 
 const initialState: ApiKeyStateType = {
-  apiKey: undefined,
+  apiKey: undefined
 }
 
 const apiKeySlice = createSlice({
@@ -19,7 +19,7 @@ const apiKeySlice = createSlice({
 })
 
 export const {
-  updateApiKey,
+  updateApiKey
 } = apiKeySlice.actions
 
 export default apiKeySlice.reducer

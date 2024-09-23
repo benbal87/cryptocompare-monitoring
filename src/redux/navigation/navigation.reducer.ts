@@ -5,7 +5,7 @@ export interface NavigationStateType {
 }
 
 const initialState: NavigationStateType = {
-  isNavbarOpen: false,
+  isNavbarOpen: false
 }
 
 const navigationSlice = createSlice({
@@ -22,7 +22,7 @@ const navigationSlice = createSlice({
 })
 
 export const {
-  toggleNavbar,
+  toggleNavbar
 } = navigationSlice.actions
 
 export default navigationSlice.reducer

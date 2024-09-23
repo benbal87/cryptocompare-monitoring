@@ -27,7 +27,7 @@ const RouterGuard: React.FC<RouterGuardProps> = <T extends object>({
           severity: 'warning',
           autoHideDuration: 6000
         })
-      );
+      )
     }
   }, [isAuthenticated, dispatch])
 

@@ -1,7 +1,8 @@
 /**
  * Checks if the given argument is a string.
  * @param {unknown} arg - The argument to check.
- * @return {arg is string} Returns true if the argument is a string, false otherwise.
+ * @return {arg is string} Returns true if the argument is a string, false
+ *   otherwise.
  */
 export const isString = (arg: unknown): arg is string =>
   typeof arg === 'string' || arg instanceof String
@@ -9,7 +10,8 @@ export const isString = (arg: unknown): arg is string =>
 /**
  * Checks if the given argument is a non-empty string.
  * @param {unknown} str - The string to check.
- * @return {str is string} Returns true if the argument is a non-empty string, false otherwise.
+ * @return {str is string} Returns true if the argument is a non-empty string,
+ *   false otherwise.
  */
 export const isStringNotEmpty = (str: unknown): str is string =>
   isString(str) && str.length > 0
