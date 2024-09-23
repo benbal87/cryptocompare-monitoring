@@ -1,4 +1,3 @@
-import './App.module.scss'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import AlertsComponent from './components/alerts/alerts.component.tsx'
 import DashboardComponent from './components/dashboard/dashboard.component.tsx'
