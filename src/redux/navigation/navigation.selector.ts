@@ -2,16 +2,16 @@ import { createSelector } from 'reselect'
 import { RootState } from '../store.ts'
 import { NavigationStateType } from './navigation.reducer'
 
-const selectNavigation = (state: RootState): NavigationStateType =>
+const selectNavigationState = (state: RootState): NavigationStateType =>
   state.navigation
 
 export const selectNavigationData = createSelector(
-  [selectNavigation],
+  [selectNavigationState],
   (navigation: NavigationStateType): NavigationStateType => navigation
 )
 
 export const selectIsNavbarOpen = createSelector(
-  [selectNavigation],
+  [selectNavigationState],
   (navigation: NavigationStateType): boolean =>
     navigation.isNavbarOpen
 )

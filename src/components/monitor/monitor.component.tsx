@@ -5,6 +5,8 @@ import Paper from '@mui/material/Paper'
 import Stack from '@mui/material/Stack'
 import React, { useCallback, useEffect, useState } from 'react'
 import useWebSocket, { ReadyState } from 'react-use-websocket'
+import { selectApiKey } from '../../redux/api-key/api-key.selector.ts'
+import { useAppSelector } from '../../redux/hooks.ts'
 import styles from './monitor.module.scss'
 
 const getConnectionStatusText = (readyState: ReadyState): string => ({
@@ -16,10 +18,10 @@ const getConnectionStatusText = (readyState: ReadyState): string => ({
 }[readyState])
 
 const Monitor: React.FC = () => {
+  const apiKey = useAppSelector(selectApiKey)
   const [data, setData] = useState<object>({})
   const [isConnected, setIsConnected] = useState<boolean>(false)
 
-  const apiKey = '94fe0306dd6d640e38f07034ae84c23159e90b11ac2874658858f1ff639a77a3'
   // const socketUrl = `wss://streamer.cryptocompare.com/v2?api_key=${apiKey}`
   const socketUrl = `wss://data-streamer.cryptocompare.com/v2?api_key=${apiKey}`
 
